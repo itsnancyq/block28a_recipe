@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 
 function RecipeList(){
     const [recipe, setRecipe] = useState([])
+    const [details, setDetails] = useState([])
     
     useEffect(()=>{
 
@@ -21,8 +22,9 @@ function RecipeList(){
             {
                 recipe.map((recipes)=>
                     <div key={recipes.idMeal}>
+                        <img src={recipes.strMealThumb} style={{height:"400px", padding:"40px"}}/>
                         <h2>{recipes.strMeal}</h2>
-                        <button onClick={()=>{recipes.strInstructions}}>Details</button>
+                        <button onClick={()=> setDetails()}>Details</button>
                     </div>
                 )
             }

@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function Register (){
+function Register ({setToken}){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     async function handleSubmit(event){
        event.preventDefault();
        try{
-        const response = await fetch("https://fsa-recipe.up.railway.app/api/auth/register",
+            const response = await fetch("https://fsa-recipe.up.railway.app/api/auth/register",
             {
                 method: "POST",
                 headers: {
@@ -18,6 +18,9 @@ function Register (){
                     password: password
                 })
             })
+            const result = await response.json()
+            setToken(result)
+
        }catch(error){
             console.error(error)
        }
@@ -25,6 +28,7 @@ function Register (){
 
     return(
         <>
+        <h2>Sign Up! or else...</h2>
         <form onSubmit={handleSubmit}>
             <label>
             Username:
